@@ -43,7 +43,7 @@ class App {
 
   database() {
     // criando conexão com banco de dados
-    mongoose.connect('mongodb+srv://douglas:123@cluster0.zfnvh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+    mongoose.connect('', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
