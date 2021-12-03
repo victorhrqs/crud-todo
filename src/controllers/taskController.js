@@ -3,7 +3,7 @@ import Tasks from '../models/task'
 class TaskController {
   
   async show(req, res) {    
-    await Tasks.find((err, response) => {
+    await Tasks.find({}, (err, response) => {
         if (err) return res.status(400).json({message: 'Ocorreu um erro ao listar as tasks'});
         return res.status(200).json(response)
     })
@@ -11,21 +11,21 @@ class TaskController {
 
   async index(req, res) {
     await Tasks.findById(req.params.id, (err, response) => {
-        if (err) return res.status(400).json({message: 'Ocorreu um erro ao exibir umas task especifica'});
+        if (err) return res.status(400).json({message: 'Ocorreu um erro ao exibir uma task especifica'});
         return res.status(200).json(response)
     })
   }
 
   async store(req, res) {    
     await Tasks.create(req.body, (err, response) => {
-        if (err) return res.status(400).json({message: 'Ocorreu um erro'});
+        if (err) return res.status(400).json({message: 'Ocorreu um erro ao inserir uma task'});
         return res.status(201).json(response)
     })
   }
 
   async update ( req, res ) {
     await Tasks.updateOne({_id : req.params.id}, req.body, (err, response) => {
-      if (err) return res.status(400).json({message: 'Ocorreu um erro'});
+      if (err) return res.status(400).json({message: 'Ocorreu um erro ao atualizar a task'});
       return res.status(204).json(response)
     })
   }

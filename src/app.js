@@ -1,23 +1,13 @@
-// import dotenv from 'dotenv'
-// // import { resolve } from 'path'
-
-// dotenv.config()
-
 require('dotenv').config()
-
-// import './database'
 
 import mongoose from 'mongoose'
 
 import express from 'express'
+import cors from 'cors'
+
 import taskRoutes from './routes/task'
-// import userRoutes from './routes/user'
-// import tokenRoutes from './routes/token'
-// import alunoRoutes from './routes/aluno'
-// import uploadRoutes from './routes/upload'
 
 // Configurando o arquivo em formato de classe
-
 class App {
 
   constructor() {
@@ -25,25 +15,23 @@ class App {
     this.middlewares()
     this.database()
     this.routes()
+    this.corsOptions = {
+      origin: '*'
+    }
   }
 
   middlewares() {
+    this.app.use(cors(this.corsOptions))
     this.app.use(express.urlencoded({ extended: true }))
     this.app.use(express.json())
-    // this.app.use(express.static(resolve(__dirname, '..', 'uploads')))
   }
 
   routes() {
     this.app.use('/', taskRoutes)
-    // this.app.use('/users', userRoutes)
-    // this.app.use('/tokens', tokenRoutes)
-    // this.app.use('/alunos', alunoRoutes)
-    // this.app.use('/uploads', uploadRoutes)
   }
 
   database() {
-    // criando conexão com banco de dados
-    mongoose.connect('', {
+    mongoose.connect(process.env.DB, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
@@ -53,5 +41,4 @@ class App {
   }
 }
 
-// exportando a classe instanciada
-export default new App().app // exportando o express em si
+export default new App().app 
