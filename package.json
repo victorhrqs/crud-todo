@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -r .env esm src/server.js"
+    "start": "nodemon -r .env esm src/server.js",
+    "build": "node -r esm src/server.js"
   },
   "keywords": [],
   "author": "",
