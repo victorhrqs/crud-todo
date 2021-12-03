@@ -9,4 +9,6 @@ router.post('/', taskController.store)
 router.put('/:id', taskController.update)
 router.delete('/:id', taskController.delete)
 
+router.put('/iscomplete/:id', taskController.isComplete)
+
 export default router
